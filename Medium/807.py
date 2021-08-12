@@ -3,17 +3,17 @@ from typing import List
 
 class Solution:
     def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:
-        south_view = []
-        north_view = []
-        west_view = [max(row) for row in grid]
-        east_view = [max(row) for row in grid[::-1]]
-        print("west", west_view)
-        print("east", east_view)
-        # for i in range(len(grid)):
-        #     south_view.append(max([row[i] for row in grid]))
-        #     north_view.append(max([row[-i] for row in grid]))
-        print(south_view, north_view)
-        return
+        cols = []
+        for i in range(len(grid)):
+            cols.append([row[i] for row in grid])
+        ans = 0
+        for i in range(len(grid)):
+            for j in range(len(grid)):
+                if grid[i][j] == max(grid[i]) or grid[i][j] == max(cols[j]):
+                    ans += 0
+                else:
+                    ans += min(max(grid[i]), max(cols[j])) - grid[i][j]
+        return ans
 
 
 solution = Solution()
